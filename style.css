@@ -1,128 +1,528 @@
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&display=swap');
 
+/* =========================================================
+   TOKENS
+   ========================================================= */
 :root {
-    --cor-de-fundo: #1E1E1E;
-    --verde: #6FFF57;
-    --branco: #FFFFFF;
-    --botao-ativo: #3A375E;
-    --botao-inativo: rgba(58, 55, 94, 0.5);
-    --texto-fundo: rgba(58, 55, 94, 0.3);
+  --verde-escuro: #1f3d2e;
+  --verde-escuro-2: #16301f;
+  --oliva: #7d8f5c;
+  --terracota: #a6431c;
+  --terracota-escura: #7e3115;
+  --mostarda: #d9a441;
+  --creme: #faf5e8;
+  --prato: #fffbf3;
+  --carvao: #2b2a25;
+  --carvao-suave: #5c4d40;
+  --linha: #e2d3b8;
+
+  --fonte-titulo: 'Fraunces', serif;
+  --fonte-texto: 'Work Sans', sans-serif;
 }
+
+* { box-sizing: border-box; }
 
 body {
-    background-color: var(--cor-de-fundo);
-    color: var(--branco);
-    font-family: 'Chakra Petch', sans-serif;
+  margin: 0;
+  background-color: var(--creme);
+  color: var(--carvao);
+  font-family: var(--fonte-texto);
+  font-size: 17px;
 }
 
-
-.conteudo-principal {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 32px;
 }
 
-.titulo-principal {
-    text-align: left;
-    width: 100%;
-    font-size: 32px;
+h1, h2, h3 {
+  font-family: var(--fonte-titulo);
+  color: var(--verde-escuro-2);
+  margin: 0 0 16px 0;
+  line-height: 1.2;
 }
 
-.titulo-principal span {
-    color: var(--verde);
+h1 { font-size: 2.4rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.25rem; }
+
+p {
+  line-height: 1.6;
+  margin: 0 0 18px 0;
+  max-width: 68ch;
 }
 
+p.justificado { text-align: justify; }
 
-.botao {
-    font-family: 'Chakra Petch', sans-serif;
-    background-color: var(--botao-inativo);
-    color: var(--branco);
-    display: flex;
-    justify-content: center;
-    padding: 1em;
-    font-size: 18px;
-    align-items: center;
-    width: 100%;
-    border-bottom: 4px solid var(--botao-ativo);
-    border-left: 2px solid var(--botao-ativo);
-    border-right: 2px solid var(--botao-ativo);
-    border-top: none;
+a { color: var(--terracota); }
+
+ul { margin: 0; padding: 0; }
+li { line-height: 1.6; }
+
+/* =========================================================
+   CABEÇALHO
+   ========================================================= */
+header.topo {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background-color: var(--verde-escuro);
 }
 
-.botao:first-child {
-    border-radius: 40px 40px 0 0;
+.topo-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
 }
 
-.botoes {
-    display: block;
+.marca {
+  font-family: var(--fonte-titulo);
+  color: var(--creme);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin: 0;
 }
 
-.botao.ativo{
-    background-color: var(--botao-ativo);
-    border-bottom: 4px solid var(--verde);
+.topo nav ul {
+  list-style: none;
+  display: flex;
+  gap: 22px;
 }
 
-.abas-textos{
-    background-color: var(--texto-fundo);
-    padding: 40px;
-    border-radius: 0 0 40px 40px;
-}
-.aba-conteudo.ativo{
-    display:block;
-}
-
-.aba-conteudo{
-    display: none;
+.topo nav a {
+  color: var(--creme);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.6px;
+  font-weight: 500;
+  padding: 6px 4px;
 }
 
-.aba-conteudo-titulo-principal{
-    font-size: 28px;
-    text-align: center;
-}
-.aba-conteudo-titulo-secundario{
-    text-align: center;
-    color: var(--verde);
-    text-transform: uppercase;
-}
+.topo nav a:hover { color: var(--mostarda); }
 
-.contador{
-    display:flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-.contador-digito{
-    padding: 0 16px;
-    text-align: center;
-    min-width: 100px;
-}
+main { padding-top: 66px; }
 
-.contador-digito-numero{
-    font-size: 80px;
-    margin: 0;
-
+/* aba fixa lateral */
+.aba-receitas {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%) rotate(180deg);
+  writing-mode: vertical-rl;
+  background-color: var(--terracota);
+  color: var(--creme);
+  text-decoration: none;
+  padding: 16px 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  z-index: 90;
 }
 
-.contador-digito-texto{
-    color: var(--verde);
-    font-size: 20px;
-    margin: 0;
+.aba-receitas:hover { background-color: var(--terracota-escura); }
 
+/* =========================================================
+   BANNER MOSAICO
+   ========================================================= */
+.mosaico {
+  position: relative;
+  height: 260px;
+  background-image: url('comidas.jpg');
+  background-size: cover;
+  background-position: center;
+  background-color: var(--verde-escuro-2);
+  overflow: hidden;
 }
 
-@media screen and (min-width: 768px) {
-    .botoes {
-        display: flex;
-    }
+@media (min-width: 700px) {
+  .mosaico { height: 320px; }
+}
 
-    .botao:first-child {
-        border-radius: 40px 0 0 0;
-    }
+.mosaico .legenda {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(22, 48, 31, 0.45);
+  text-align: center;
+  padding: 12px;
+}
 
-    .botao:last-child {
-        border-radius: 0 40px 0 0;
-    }
+.mosaico .legenda h1 {
+  color: var(--prato);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 2.2rem;
+}
+
+.mosaico .legenda p {
+  color: var(--prato);
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+/* =========================================================
+   ILUSTRAÇÃO / APRESENTAÇÃO
+   ========================================================= */
+.apresentacao { padding-top: 40px; }
+
+.ilustracao-flutuante {
+  float: left;
+  width: 230px;
+  margin: 4px 26px 16px 0;
+  border-radius: 4px;
+  display: block;
+}
+
+.foto-flutuante-direita {
+  float: right;
+  width: 260px;
+  margin: 4px 0 16px 26px;
+  border-radius: 4px;
+  display: block;
+}
+
+.clearfix::after { content: ""; display: table; clear: both; }
+
+/* =========================================================
+   CITAÇÃO
+   ========================================================= */
+blockquote.citacao {
+  font-style: italic;
+  color: var(--terracota-escura);
+  font-family: var(--fonte-titulo);
+  font-size: 1.2rem;
+  background-color: #efe6cf;
+  border-left: 4px solid var(--terracota);
+  padding: 20px 26px;
+  margin: 0 0 28px 0;
+}
+
+blockquote.citacao footer {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--carvao-suave);
+  font-style: normal;
+  font-family: var(--fonte-texto);
+}
+
+.quote-oliva {
+  background-color: var(--oliva);
+  color: var(--prato);
+  padding: 26px 30px;
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* =========================================================
+   TABELA / CRONOGRAMA
+   ========================================================= */
+.secao-oliva {
+  background-color: var(--oliva);
+  padding: 30px 32px;
+  margin-bottom: 28px;
+}
+
+.secao-oliva h2 { color: var(--prato); }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--prato);
+}
+
+th, td {
+  border: 1px solid var(--linha);
+  padding: 12px 14px;
+  text-align: left;
+}
+
+th {
+  background-color: var(--verde-escuro);
+  color: var(--creme);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+/* =========================================================
+   FORMULÁRIO
+   ========================================================= */
+form.contato {
+  border: 2px dashed var(--oliva);
+  padding: 28px;
+  margin-bottom: 28px;
+}
+
+form label { display: block; margin-bottom: 6px; font-weight: 500; }
+
+input[type="text"], input[type="email"], textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 18px;
+  border: 1px solid var(--linha);
+  border-radius: 3px;
+  font-family: var(--fonte-texto);
+  font-size: 1rem;
+}
+
+textarea { resize: vertical; min-height: 100px; }
+
+fieldset {
+  border: 1px solid var(--linha);
+  padding: 16px;
+  margin-bottom: 18px;
+  border-radius: 3px;
+}
+
+fieldset legend { padding: 0 8px; font-weight: 600; color: var(--verde-escuro-2); }
+
+.opcao { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.opcao input { margin: 0; }
+
+button[type="submit"] {
+  background-color: var(--terracota);
+  color: var(--creme);
+  border: none;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-family: var(--fonte-texto);
+  font-weight: 600;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover { background-color: var(--terracota-escura); }
+
+/* =========================================================
+   CATÁLOGO / GRADE DE RECEITAS
+   ========================================================= */
+.catalogo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.cartao-receita {
+  display: block;
+  text-decoration: none;
+  color: var(--carvao);
+  background-color: var(--prato);
+  border: 1px solid var(--linha);
+  overflow: hidden;
+}
+
+.thumb-wrap {
+  position: relative;
+  padding-top: 75%;
+  overflow: hidden;
+  background-color: var(--linha);
+}
+
+.thumb-wrap img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cartao-receita .legenda-cartao {
+  padding: 14px 16px;
+  font-family: var(--fonte-titulo);
+  font-size: 1.02rem;
+  text-align: center;
+  border-top: 1px solid var(--linha);
+}
+
+.cartao-receita:hover .legenda-cartao {
+  color: var(--terracota);
+}
+
+/* =========================================================
+   SOBRE — LAYOUT COM BARRA LATERAL
+   ========================================================= */
+.sobre-layout {
+  display: flex;
+  gap: 36px;
+  align-items: flex-start;
+  margin-bottom: 28px;
+}
+
+.sobre-principal { flex: 3; }
+
+.sobre-lateral {
+  flex: 1.4;
+  background-color: var(--oliva);
+  color: var(--prato);
+  padding: 24px;
+}
+
+.sobre-lateral h3 { color: var(--prato); font-size: 1.15rem; }
+
+.sobre-lateral ul { list-style: none; }
+
+.sobre-lateral li { margin-bottom: 18px; font-size: 0.92rem; }
+
+.sobre-lateral li strong { display: block; margin-bottom: 4px; font-family: var(--fonte-titulo); }
+
+@media (max-width: 720px) {
+  .sobre-layout { flex-direction: column; }
+}
+
+/* =========================================================
+   PÁGINA DE RECEITA
+   ========================================================= */
+.receita-banner {
+  position: relative;
+  background-color: var(--terracota);
+  background-size: cover;
+  background-position: center;
+  color: var(--prato);
+  text-align: center;
+  padding: 70px 32px;
+  margin-bottom: 40px;
+  isolation: isolate;
+}
+
+.receita-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(126, 49, 21, 0.68);
+  z-index: -1;
+}
+
+.receita-banner h1 {
+  color: var(--prato);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 2.4rem;
+  margin: 0 auto;
+  max-width: 20ch;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.25);
+}
+
+.receita-corpo {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 40px;
+  padding-bottom: 60px;
+}
+
+.receita-corpo h2 {
+  font-family: var(--fonte-texto);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--terracota);
+  border-bottom: 2px solid var(--terracota);
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+
+.lista-ingredientes {
+  background-color: var(--prato);
+  border: 1px solid var(--linha);
+  padding: 18px 20px;
+  margin-bottom: 20px;
+}
+
+.lista-ingredientes ul { list-style: none; }
+
+.lista-ingredientes li {
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--linha);
+  font-style: italic;
+  color: var(--carvao-suave);
+}
+
+.lista-ingredientes li:last-child { border-bottom: none; }
+
+.lista-ingredientes h4 {
+  font-family: var(--fonte-texto);
+  font-style: normal;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: var(--verde-escuro-2);
+  margin: 14px 0 6px 0;
+}
+
+.caixa-info {
+  background-color: #efe6cf;
+  border: 1px dashed var(--oliva);
+  padding: 16px 18px;
+  font-style: italic;
+  color: var(--carvao-suave);
+  font-size: 0.92rem;
+}
+
+.caixa-info strong { display: block; font-style: normal; margin-bottom: 6px; color: var(--verde-escuro-2); }
+
+.passo {
+  background-color: var(--prato);
+  border: 1px solid var(--linha);
+  border-left: 4px solid var(--terracota);
+  padding: 14px 18px;
+  margin-bottom: 14px;
+}
+
+.passo h3 {
+  font-family: var(--fonte-texto);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--terracota);
+  margin: 0 0 6px 0;
+}
+
+.passo p { margin: 0; max-width: none; }
+
+@media (max-width: 720px) {
+  .receita-corpo { grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   RODAPÉ
+   ========================================================= */
+footer.rodape {
+  background-color: var(--verde-escuro);
+  color: var(--creme);
+  text-align: center;
+  padding: 30px 32px;
+}
+
+footer.rodape p { color: var(--creme); margin-bottom: 6px; max-width: none; }
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+@media (max-width: 700px) {
+  .topo-inner { flex-direction: column; gap: 10px; }
+  .topo nav ul { flex-wrap: wrap; justify-content: center; gap: 14px; }
+  main { padding-top: 96px; }
+  .ilustracao-flutuante, .foto-flutuante-direita { float: none; width: 100%; margin: 0 0 16px 0; }
+  .catalogo-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 500px) {
+  .catalogo-grid { grid-template-columns: 1fr; }
+  .mosaico .legenda h1 { font-size: 1.5rem; }
 }

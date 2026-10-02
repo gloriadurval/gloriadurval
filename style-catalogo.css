@@ -1,0 +1,1068 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+/* =========================
+   VARIÁVEIS
+========================= */
+
+:root {
+    --verde: #244f3c;
+    --verde2: #36745a;
+    --claro: #e7f0e9;
+    --creme: #f8f5ed;
+    --branco: #fff;
+    --laranja: #d87943;
+    --texto: #24322b;
+    --cinza: #6d7771;
+    --borda: #e3e5df;
+    --sombra: 0 18px 45px rgba(36, 79, 60, .10);
+}
+
+
+/* =========================
+   RESET / BASE
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    color: var(--texto);
+    background: var(--creme);
+    line-height: 1.6;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* =========================
+   CABEÇALHO
+========================= */
+
+.cabecalho {
+    min-height: 78px;
+    padding: 0 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: rgba(248, 245, 237, .96);
+    border-bottom: 1px solid var(--borda);
+
+    position: sticky;
+    top: 0;
+    z-index: 50;
+
+    backdrop-filter: blur(12px);
+}
+
+.cabecalho nav ul {
+    list-style: none;
+    display: flex;
+    gap: 22px;
+  }
+  
+  .cabecalho nav a {
+    color: var(--verde);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.6px;
+    font-weight: 500;
+    padding: 6px 4px;
+  }
+  
+  .cabecalho nav a:hover { color: var(--mostarda); }
+  
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    width: 43px;
+    height: 43px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 13px;
+
+    background: var(--verde);
+    color: #fff;
+
+    font-size: 23px;
+}
+
+.marca strong {
+    display: block;
+    color: var(--verde);
+
+    letter-spacing: 1.5px;
+    font-size: 15px;
+}
+
+.marca small {
+    display: block;
+    color: var(--cinza);
+    font-size: 11px;
+}
+
+.cabecalho-info {
+    color: var(--verde2);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 4px;
+    letter-spacing: 0.6px;
+    font-size: 0.8rem;
+    text-decoration: none;
+    text-transform: uppercase;
+
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 440px;
+    padding: 70px 10%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+
+    background:
+        radial-gradient(
+            circle at 80% 25%,
+            rgba(54, 116, 90, .18),
+            transparent 28%
+        ),
+        linear-gradient(
+            135deg,
+            #eef3eb 0%,
+            #f8f5ed 68%
+        );
+
+    overflow: hidden;
+}
+
+.hero-conteudo {
+    max-width: 700px;
+}
+
+.etiqueta,
+.mini-etiqueta {
+    color: var(--laranja);
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.hero h1 {
+    margin: 12px 0 18px;
+
+    font-family: "Playfair Display", serif;
+    color: var(--verde);
+
+    font-size: clamp(38px, 5vw, 66px);
+    line-height: 1.08;
+}
+
+.hero h1 strong {
+    color: var(--laranja);
+}
+
+.hero p {
+    max-width: 610px;
+
+    color: var(--cinza);
+    font-size: 17px;
+}
+
+
+/* =========================
+   ESTATÍSTICAS
+========================= */
+
+.estatisticas {
+    display: flex;
+    gap: 35px;
+    margin-top: 32px;
+}
+
+.estatisticas div {
+    display: flex;
+    flex-direction: column;
+}
+
+.estatisticas strong {
+    color: var(--verde);
+    font-size: 25px;
+}
+
+.estatisticas span {
+    color: var(--cinza);
+
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+}
+
+
+/* =========================
+   VISUAL DO HERO
+========================= */
+
+.hero-visual {
+    width: 310px;
+    height: 310px;
+
+    position: relative;
+    flex-shrink: 0;
+}
+
+.circulo {
+    width: 245px;
+    height: 245px;
+
+    position: absolute;
+    inset: 30px;
+
+    display: grid;
+    place-items: center;
+
+    border: 2px dashed rgba(36, 79, 60, .3);
+    border-radius: 50%;
+
+    color: var(--verde);
+    background: rgba(255, 255, 255, .55);
+
+    font-size: 92px;
+}
+
+.folha,
+.semente {
+    width: 62px;
+    height: 62px;
+
+    position: absolute;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: #fff;
+    box-shadow: var(--sombra);
+
+    font-size: 28px;
+}
+
+.folha1 {
+    top: 5px;
+    right: 25px;
+}
+
+.folha2 {
+    bottom: 10px;
+    left: 0;
+}
+
+.semente {
+    right: 0;
+    bottom: 55px;
+}
+
+
+/* =========================
+   CATÁLOGO
+========================= */
+
+.catalogo {
+    max-width: 1300px;
+    margin: auto;
+    padding: 70px 5% 90px;
+}
+
+.titulo-secao {
+    margin-bottom: 30px;
+}
+
+.titulo-secao h2 {
+    margin-top: 5px;
+
+    color: var(--verde);
+
+    font-family: "Playfair Display", serif;
+    font-size: clamp(28px, 4vw, 43px);
+}
+
+.titulo-secao p {
+    margin-top: 5px;
+    color: var(--cinza);
+}
+
+
+/* =========================
+   CONTROLES
+========================= */
+
+.controles {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 13px;
+    margin-bottom: 17px;
+}
+
+.campo-busca {
+    min-width: 280px;
+    max-width: 430px;
+    flex: 1;
+
+    height: 49px;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 0 15px;
+
+    background: #fff;
+    border: 1px solid var(--borda);
+    border-radius: 13px;
+}
+
+.campo-busca span {
+    color: var(--cinza);
+    font-size: 24px;
+}
+
+.campo-busca input {
+    width: 100%;
+
+    border: 0;
+    outline: 0;
+
+    color: var(--texto);
+    background: transparent;
+}
+
+
+/* =========================
+   FILTROS
+========================= */
+
+.filtros {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+}
+
+.filtro {
+    padding: 10px 14px;
+
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+
+    color: var(--cinza);
+    background: #fff;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.filtro:hover,
+.filtro.ativo {
+    background: var(--verde);
+    border-color: var(--verde);
+    color: #fff;
+}
+
+
+/* =========================
+   FAVORITOS
+========================= */
+
+.favoritos-toggle {
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    color: var(--cinza);
+
+    font-size: 13px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.favoritos-toggle input {
+    accent-color: var(--verde);
+}
+
+.favoritos-toggle span {
+    color: var(--laranja);
+    font-size: 20px;
+}
+
+
+/* =========================
+   RESULTADOS
+========================= */
+
+.resultado-info {
+    min-height: 35px;
+    margin-bottom: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: var(--cinza);
+    font-size: 13px;
+}
+
+.limpar {
+    border: 0;
+    background: transparent;
+
+    color: var(--laranja);
+    font-weight: 700;
+
+    display: none;
+}
+
+
+/* =========================
+   GRID DE RECEITAS
+========================= */
+
+.grid-receitas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card {
+    position: relative;
+    overflow: hidden;
+
+    background: #fff;
+    border: 1px solid var(--borda);
+    border-radius: 19px;
+
+    box-shadow: 0 7px 25px rgba(36, 79, 60, .06);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra);
+}
+
+
+/* =========================
+   IMAGEM DO CARD
+========================= */
+
+.card-imagem {
+    height: 205px;
+
+    display: grid;
+    place-items: center;
+
+    position: relative;
+    overflow: hidden;
+
+    background: linear-gradient(
+        135deg,
+        var(--claro),
+        #f5eee2
+    );
+}
+
+.card-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.imagem-fallback {
+    font-size: 62px;
+}
+
+
+/* =========================
+   FAVORITO DO CARD
+========================= */
+
+.card-favorito {
+    width: 37px;
+    height: 37px;
+
+    position: absolute;
+    right: 12px;
+    top: 12px;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, .94);
+    color: var(--laranja);
+
+    font-size: 21px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, .08);
+
+    z-index: 2;
+}
+
+.card-favorito.ativo {
+    background: var(--laranja);
+    color: #fff;
+}
+
+
+/* =========================
+   CONTEÚDO DO CARD
+========================= */
+
+.card-conteudo {
+    padding: 18px;
+}
+
+.card-categoria {
+    color: var(--laranja);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+
+.card h3 {
+    margin: 6px 0 8px;
+
+    color: var(--verde);
+
+    font-family: "Playfair Display", serif;
+    font-size: 21px;
+    line-height: 1.2;
+}
+
+.card p {
+    min-height: 49px;
+
+    color: var(--cinza);
+
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+
+/* =========================
+   RODAPÉ DO CARD
+========================= */
+
+.card-rodape {
+    margin-top: 15px;
+    padding-top: 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    border-top: 1px solid var(--borda);
+}
+
+.card-dados {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    color: var(--cinza);
+    font-size: 10px;
+}
+
+.ver-receita {
+    padding: 8px 11px;
+
+    border: 0;
+    border-radius: 9px;
+
+    background: var(--verde);
+    color: #fff;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.ver-receita:hover {
+    background: var(--verde2);
+}
+
+
+/* =========================
+   SEM RESULTADOS
+========================= */
+
+.sem-resultados {
+    display: none;
+
+    padding: 70px 20px;
+
+    text-align: center;
+}
+
+.sem-resultados div {
+    font-size: 45px;
+}
+
+.sem-resultados h3 {
+    margin-top: 10px;
+    color: var(--verde);
+}
+
+.sem-resultados p {
+    color: var(--cinza);
+}
+
+
+/* =========================
+   RODAPÉ
+========================= */
+
+.rodape {
+    padding: 30px 7%;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    background: var(--verde);
+    color: #fff;
+}
+
+.rodape strong {
+    letter-spacing: 1px;
+}
+
+.rodape p,
+.rodape span {
+    color: rgba(255, 255, 255, .7);
+    font-size: 12px;
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal-fundo {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    z-index: 100;
+
+    padding: 25px;
+
+    background: rgba(16, 32, 25, .68);
+
+    overflow-y: auto;
+}
+
+.modal-fundo.aberto {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.modal {
+    width: min(950px, 100%);
+    margin: 20px auto;
+
+    position: relative;
+    overflow: hidden;
+
+    background: var(--creme);
+
+    border-radius: 23px;
+
+    box-shadow: 0 30px 80px rgba(0, 0, 0, .25);
+}
+
+
+/* =========================
+   FECHAR MODAL
+========================= */
+
+.fechar-modal {
+    width: 40px;
+    height: 40px;
+
+    position: absolute;
+    right: 18px;
+    top: 18px;
+
+    z-index: 5;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, .94);
+    color: var(--verde);
+
+    font-size: 27px;
+}
+
+
+/* =========================
+   IMAGEM DO MODAL
+========================= */
+
+.modal-imagem {
+    height: 270px;
+
+    display: grid;
+    place-items: center;
+
+    overflow: hidden;
+
+    background: linear-gradient(
+        135deg,
+        var(--claro),
+        #f3e8d8
+    );
+
+    font-size: 90px;
+}
+
+.modal-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* =========================
+   CONTEÚDO DO MODAL
+========================= */
+
+.modal-conteudo {
+    padding: 30px 35px 35px;
+}
+
+.modal-topo {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.modal-categoria {
+    color: var(--laranja);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+}
+
+.modal h2 {
+    margin-top: 5px;
+
+    color: var(--verde);
+
+    font-family: "Playfair Display", serif;
+    font-size: 38px;
+    line-height: 1.15;
+}
+
+.botao-favorito-modal {
+    width: 46px;
+    height: 46px;
+
+    flex-shrink: 0;
+
+    border: 1px solid var(--borda);
+    border-radius: 50%;
+
+    background: #fff;
+    color: var(--laranja);
+
+    font-size: 24px;
+}
+
+.botao-favorito-modal.ativo {
+    background: var(--laranja);
+    color: #fff;
+}
+
+.modal-descricao {
+    margin: 13px 0 20px;
+    color: var(--cinza);
+}
+
+
+/* =========================
+   DADOS DA RECEITA
+========================= */
+
+.dados-receita {
+    display: flex;
+    gap: 12px;
+
+    margin-bottom: 28px;
+}
+
+.dados-receita div {
+    min-width: 120px;
+
+    padding: 12px;
+
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    column-gap: 5px;
+
+    background: #fff;
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+}
+
+.dados-receita span {
+    grid-row: span 2;
+    color: var(--laranja);
+}
+
+.dados-receita strong {
+    color: var(--verde);
+    font-size: 12px;
+}
+
+.dados-receita small {
+    color: var(--cinza);
+    font-size: 9px;
+}
+
+
+/* =========================
+   INGREDIENTES / PREPARO
+========================= */
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: 35px;
+}
+
+.modal-grid h3 {
+    margin-bottom: 13px;
+    color: var(--verde);
+    font-size: 18px;
+}
+
+.modal-grid ul,
+.modal-grid ol {
+    padding-left: 20px;
+}
+
+.modal-grid li {
+    margin-bottom: 9px;
+
+    color: var(--cinza);
+
+    font-size: 13px;
+}
+
+.modal-grid li::marker {
+    color: var(--laranja);
+    font-weight: 700;
+}
+
+
+/* =========================
+   DICA DA RECEITA
+========================= */
+
+.dica-receita {
+    margin-top: 27px;
+    padding: 17px;
+
+    border-left: 4px solid var(--laranja);
+    border-radius: 8px;
+
+    background: #f1eadc;
+}
+
+.dica-receita strong {
+    color: var(--verde);
+    font-size: 13px;
+}
+
+.dica-receita p {
+    margin-top: 3px;
+
+    color: var(--cinza);
+    font-size: 12px;
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+   TABLET
+========================= */
+
+@media (max-width: 1050px) {
+
+    .grid-receitas {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .hero {
+        padding-left: 7%;
+        padding-right: 7%;
+    }
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+   CELULAR MÉDIO
+========================= */
+
+@media (max-width: 800px) {
+
+    .cabecalho-info {
+        display: none;
+    }
+
+    .hero {
+        min-height: auto;
+
+        padding-top: 55px;
+        padding-bottom: 55px;
+    }
+
+    .hero-visual {
+        display: none;
+    }
+
+    .grid-receitas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .favoritos-toggle {
+        margin-left: 0;
+    }
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+   CELULAR
+========================= */
+
+@media (max-width: 560px) {
+
+    .cabecalho {
+        padding: 0 5%;
+    }
+
+    .hero {
+        padding: 45px 6%;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .estatisticas {
+        gap: 20px;
+    }
+
+    .catalogo {
+        padding: 50px 5% 65px;
+    }
+
+    .grid-receitas {
+        grid-template-columns: 1fr;
+    }
+
+    .card-imagem {
+        height: 230px;
+    }
+
+    .campo-busca {
+        min-width: 100%;
+    }
+
+    .filtros {
+        width: 100%;
+    }
+
+    .filtro {
+        flex: 1;
+    }
+
+    .dados-receita {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .dados-receita div:last-child {
+        grid-column: span 2;
+    }
+
+    .modal-fundo {
+        padding: 8px;
+    }
+
+    .modal-conteudo {
+        padding: 25px 20px;
+    }
+
+    .modal h2 {
+        font-size: 30px;
+    }
+
+    .modal-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .rodape {
+        flex-direction: column;
+    }
+}
