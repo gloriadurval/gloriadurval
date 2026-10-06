@@ -84,4 +84,4 @@ modalFundo.addEventListener("click",e=>{if(e.target===modalFundo)fechar()});
 favoritoModal.addEventListener("click",()=>{if(receitaAtual)alternar(receitaAtual.id)});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&modalFundo.classList.contains("aberto"))fechar()});
 render();
-
+/*teste*/
