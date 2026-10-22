@@ -231,41 +231,12 @@ blockquote.citacao footer {
   margin-bottom: 20px;
 }
 
-/* =========================================================
-   TABELA / CRONOGRAMA
-   ========================================================= */
-.secao-oliva {
-  background-color: var(--oliva);
-  padding: 30px 32px;
-  margin-bottom: 28px;
-}
 
-.secao-oliva h2 { color: var(--prato); }
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: var(--prato);
-}
-
-th, td {
-  border: 1px solid var(--linha);
-  padding: 12px 14px;
-  text-align: left;
-}
-
-th {
-  background-color: var(--verde-escuro);
-  color: var(--creme);
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  letter-spacing: 0.5px;
-}
 
 /* =========================================================
    FORMULÁRIO
    ========================================================= */
-form.contato {
+form.pageclip-form {
   border: 2px dashed var(--oliva);
   padding: 28px;
   margin-bottom: 28px;
