@@ -6,7 +6,6 @@
 <meta name="description" content="Catálogo digital de receitas para aproveitar melhor os alimentos.">
 <title>Prato Limpo | Catálogo</title>
 <link rel="stylesheet" href="style-catalogo.css">
-<link rel="stylesheet" href="filtros-grupos.css">
 </head>
 <body>
 
@@ -53,15 +52,12 @@
 
   <div class="controles">
     <div class="campo-busca"><span>⌕</span><input id="busca" type="search" placeholder="Buscar por receita, ingrediente..."></div>
-    <div class="filtros-grupos" id="filtros">
-      <section class="grupo-filtro">
-        <h3 class="grupo-titulo">O que você quer aproveitar?</h3>
-        <div class="chips" id="chips-parte"></div>
-      </section>
-      <section class="grupo-filtro">
-        <h3 class="grupo-titulo">Que tipo de receita?</h3>
-        <div class="chips" id="chips-tipo"></div>
-      </section>
+    <div class="filtros" id="filtros">
+      <button class="filtro ativo" data-categoria="todos">Todas</button>
+      <button class="filtro" data-categoria="cascas">Cascas</button>
+      <button class="filtro" data-categoria="talos">Talos e folhas</button>
+      <button class="filtro" data-categoria="sementes">Sementes</button>
+      <button class="filtro" data-categoria="sobras">Sobras</button>
     </div>
     <label class="favoritos-toggle"><input type="checkbox" id="mostrarFavoritos"> <span>♡</span> Somente favoritos</label>
   </div>

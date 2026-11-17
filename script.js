@@ -24,7 +24,7 @@ const receitas = [
 ]
 
 
-let parteAtual="todos", tipoAtual="todos", termoAtual="", somenteFavoritos=false, receitaAtual=null;
+let categoriaAtual="todos", termoAtual="", somenteFavoritos=false, receitaAtual=null;
 const favoritos=new Set(JSON.parse(localStorage.getItem("pratoLimpoFavoritos")||"[]").map(Number));
 const grid=document.getElementById("gridReceitas"), busca=document.getElementById("busca");
 const filtros=document.getElementById("filtros"), mostrarFavoritos=document.getElementById("mostrarFavoritos");
@@ -32,35 +32,11 @@ const resultadoTexto=document.getElementById("resultadoTexto"), limparFiltros=do
 const semResultados=document.getElementById("semResultados"), modalFundo=document.getElementById("modalFundo");
 const favoritoModal=document.getElementById("favoritoModal");
 
-/* ===== Filtros em dois grupos: parte do alimento + tipo de receita ===== */
-const PARTES=[["todos","Todas",""],["cascas","Cascas","🍌"],["sementes","Sementes","🌱"],["talos","Talos e folhas","🥬"],["sobras","Sobras","🍚"]];
-const TIPOS=[["todos","Todos",""],["salgado","Salgado","🧂"],["doce","Doce","🍰"],["suco","Sucos","🥤"],["rapida","Receitas rápidas","⚡"]];
-// Tipo de cada receita (id -> tipo). Receitas novas podem ter o campo tipo:"doce" direto no objeto.
-const TIPO_POR_ID={1:"doce",2:"salgado",3:"doce",4:"salgado",5:"salgado",6:"salgado",7:"doce",8:"doce",9:"doce",10:"doce",11:"doce",12:"salgado",13:"salgado",14:"salgado",15:"doce",16:"salgado",17:"doce",18:"salgado",19:"doce",20:"suco",21:"salgado",22:"salgado"};
-const TEMPO_RAPIDO=20; // minutos
-
-// Padroniza os valores de categoria (cascas, casca, Sobras, talos e folhas...)
-function parteDe(r){const c=(r.categoria||"").toLowerCase().trim();return c.startsWith("casca")?"cascas":c.startsWith("talo")?"talos":c.startsWith("semente")?"sementes":c.startsWith("sobra")?"sobras":c}
-function tiposDe(r){const base=r.tipo||TIPO_POR_ID[r.id];const t=base?[].concat(base):[];if(parseInt(r.tempo)<=TEMPO_RAPIDO)t.push("rapida");return t}
-function bate(r,ignorar){
- const termo=termoAtual.trim().toLowerCase();
- const texto=[r.titulo,r.descricao,r.categoriaTexto,r.aproveitamento,...r.ingredientes].join(" ").toLowerCase();
- return (ignorar==="parte"||parteAtual==="todos"||parteDe(r)===parteAtual)
-  &&(ignorar==="tipo"||tipoAtual==="todos"||tiposDe(r).includes(tipoAtual))
-  &&(!termo||texto.includes(termo))&&(!somenteFavoritos||favoritos.has(r.id));
-}
-function desenharChips(grupo,lista,atual){
- document.getElementById("chips-"+grupo).innerHTML=lista.map(([v,nome,icone])=>{
-  const q=receitas.filter(r=>bate(r,grupo)&&(v==="todos"||(grupo==="parte"?parteDe(r)===v:tiposDe(r).includes(v)))).length;
-  return `<button type="button" class="chip${v==="rapida"?" rapida":""}" data-grupo="${grupo}" data-valor="${v}" aria-pressed="${atual===v}">${icone?`<span aria-hidden="true">${icone}</span>`:""}${nome}<small>${q}</small></button>`;
- }).join("");
-}
-
 
 function salvar(){localStorage.setItem("pratoLimpoFavoritos",JSON.stringify([...favoritos]))}
 function estatisticas(){
  document.getElementById("totalReceitas").textContent=receitas.length;
- document.getElementById("totalCategorias").textContent=new Set(receitas.map(parteDe)).size;
+ document.getElementById("totalCategorias").textContent=new Set(receitas.map(r=>r.categoria)).size;
  document.getElementById("totalFavoritos").textContent=favoritos.size;
 }
 function card(r){
@@ -76,14 +52,20 @@ function card(r){
  <div class="card-rodape"><div class="card-dados"><span>⏱ ${r.tempo}</span><span>♻ ${r.aproveitamento}</span></div>
  <button class="ver-receita" data-receita="${r.id}">Ver receita</button></div></div></article>`;
 }
-function filtrar(){return receitas.filter(r=>bate(r))}
+function filtrar(){
+ const termo=termoAtual.trim().toLowerCase();
+ return receitas.filter(r=>{
+  const cat=categoriaAtual==="todos"||r.categoria===categoriaAtual;
+  const texto=[r.titulo,r.descricao,r.categoriaTexto,r.aproveitamento,...r.ingredientes].join(" ").toLowerCase();
+  return cat&&(!termo||texto.includes(termo))&&(!somenteFavoritos||favoritos.has(r.id));
+ });
+}
 function render(){
  const lista=filtrar();
  grid.innerHTML=lista.map(card).join("");
- desenharChips("parte",PARTES,parteAtual); desenharChips("tipo",TIPOS,tipoAtual);
  semResultados.style.display=lista.length?"none":"block";
  resultadoTexto.textContent=lista.length?`${lista.length} ${lista.length===1?"receita encontrada":"receitas encontradas"}`:"Nenhuma receita encontrada";
- const tem=parteAtual!=="todos"||tipoAtual!=="todos"||termoAtual.trim()||somenteFavoritos;
+ const tem=categoriaAtual!=="todos"||termoAtual.trim()||somenteFavoritos;
  limparFiltros.style.display=tem?"block":"none"; estatisticas();
 }
 function abrir(id){
@@ -105,9 +87,9 @@ function alternar(id){favoritos.has(id)?favoritos.delete(id):favoritos.add(id);s
 function fechar(){modalFundo.classList.remove("aberto");document.body.style.overflow="";receitaAtual=null}
 
 busca.addEventListener("input",e=>{termoAtual=e.target.value;render()});
-filtros.addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;if(b.dataset.grupo==="parte")parteAtual=b.dataset.valor;else tipoAtual=b.dataset.valor;render()});
+filtros.addEventListener("click",e=>{const b=e.target.closest(".filtro");if(!b)return;document.querySelectorAll(".filtro").forEach(x=>x.classList.remove("ativo"));b.classList.add("ativo");categoriaAtual=b.dataset.categoria;render()});
 mostrarFavoritos.addEventListener("change",e=>{somenteFavoritos=e.target.checked;render()});
-limparFiltros.addEventListener("click",()=>{parteAtual="todos";tipoAtual="todos";termoAtual="";somenteFavoritos=false;busca.value="";mostrarFavoritos.checked=false;render()});
+limparFiltros.addEventListener("click",()=>{categoriaAtual="todos";termoAtual="";somenteFavoritos=false;busca.value="";mostrarFavoritos.checked=false;document.querySelectorAll(".filtro").forEach(x=>x.classList.remove("ativo"));document.querySelector('[data-categoria="todos"]').classList.add("ativo");render()});
 grid.addEventListener("click",e=>{const f=e.target.closest("[data-favorito]");if(f){alternar(Number(f.dataset.favorito));return}const r=e.target.closest("[data-receita]");if(r)abrir(Number(r.dataset.receita))});
 document.getElementById("fecharModal").addEventListener("click",fechar);
 modalFundo.addEventListener("click",e=>{if(e.target===modalFundo)fechar()});
